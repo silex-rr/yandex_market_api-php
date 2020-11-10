@@ -1,0 +1,25 @@
+{
+  "name": "silex_rr/yandex_market_api-php",
+  "version": "0.0.1",
+  "type": "library",
+  "description": "Library for Yandex Market Api Balancer",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "silex-rr"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "YMAb": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.2.0",
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "php-curl-class/php-curl-class": ">=8.8.0",
+    "myclabs/php-enum": ">=1.7.6"
+  }
+}
