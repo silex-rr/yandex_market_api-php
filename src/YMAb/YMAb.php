@@ -13,7 +13,7 @@ class YMAb
     /**
      * @var array(token => self)
      */
-    private $instanceByToken = [];
+    private static $instanceByToken = [];
 
     /**
      * @var Request[]
@@ -43,13 +43,14 @@ class YMAb
     /**
      * @return YMAb
      */
-    public function getInstance(string $token): YMAb
+    public static function getInstance(string $token): YMAb
     {
-        if (key_exists($token, $this->instanceByToken)) {
-            $this->instanceByToken[$token] = new self();
-            $this->instanceByToken[$token]->getConfig()->setToken($token);
+        if (key_exists($token, self::instanceByToken)) {
+            self::instanceByToken[$token] = new self();
+            $instance = self::instanceByToken[$token];
+            $instance->getConfig()->setToken($token);
         }
-        return $this->instanceByToken[$token];
+        return self::instanceByToken[$token];
     }
 
     /**
