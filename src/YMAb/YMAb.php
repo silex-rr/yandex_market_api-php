@@ -52,7 +52,7 @@ class YMAb
     public static function getInstance(string $token, Config $config): YMAb
     {
         if (!key_exists($token, self::instanceByToken)) {
-            self::instanceByToken[$token] = new self($config);
+            self::$instanceByToken[$token] = new self($config);
             /**
              * @var YMAb $instance
              */
