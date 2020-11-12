@@ -43,15 +43,29 @@ class YMAb
     /**
      * @return YMAb
      */
-    public static function getInstance(string $token): YMAb
+    public static function getInstance(string $token, Config $config): YMAb
     {
-        if (key_exists($token, self::instanceByToken)) {
+        if (!key_exists($token, self::instanceByToken)) {
             self::instanceByToken[$token] = new self();
             $instance = self::instanceByToken[$token];
+            /**
+             * @var self $instance
+             */
+            $instance->setConfig($config);
             $instance->getConfig()->setToken($token);
         }
         return self::instanceByToken[$token];
     }
+
+    /**
+     * @param Config $config
+     */
+    public function setConfig(Config $config): void
+    {
+        $this->config = $config;
+    }
+
+
 
     /**
      * @return Config
