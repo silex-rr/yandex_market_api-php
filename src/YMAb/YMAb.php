@@ -35,34 +35,31 @@ class YMAb
      */
     private $PDO;
 
-    private function __construct()
+    private function __construct(Config $config)
     {
+        $this->config = $config;
+        if ($config->isWorkWithDB()) {
+            $this->connectToDB();
+        }
         $this->requestService = new RequestService($this);
     }
 
     /**
+     * @param string $token
+     * @param Config $config
      * @return YMAb
      */
     public static function getInstance(string $token, Config $config): YMAb
     {
         if (!key_exists($token, self::instanceByToken)) {
-            self::instanceByToken[$token] = new self();
-            $instance = self::instanceByToken[$token];
+            self::instanceByToken[$token] = new self($config);
             /**
-             * @var self $instance
+             * @var YMAb $instance
              */
-            $instance->setConfig($config);
+            $instance = self::instanceByToken[$token];
             $instance->getConfig()->setToken($token);
         }
         return self::instanceByToken[$token];
-    }
-
-    /**
-     * @param Config $config
-     */
-    public function setConfig(Config $config): void
-    {
-        $this->config = $config;
     }
 
 
@@ -113,6 +110,15 @@ class YMAb
     {
         return $this->PDO;
     }
+
+    /**
+     * @return RequestService
+     */
+    public function getRequestService(): RequestService
+    {
+        return $this->requestService;
+    }
+
 
 
 }

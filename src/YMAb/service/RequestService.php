@@ -32,6 +32,7 @@ class RequestService
     {
         $this->context = $context;
         $this->requestRepository = new RequestRepository();
+        $this->startWorkWithDB();
     }
 
     /**
