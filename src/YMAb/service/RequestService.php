@@ -89,6 +89,11 @@ class RequestService
                 $curl->post($url, $params);
                 break;
         }
+        print "<pre>";
+        var_dump($curl->getUrl());
+        var_dump($curl->getRequestHeaders());
+        var_dump($params);
+        print "</pre>";
 
         if ($curl->error) {
             $request->setStatus(new RequestStatus(RequestStatus::ERROR));
