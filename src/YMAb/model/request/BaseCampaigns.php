@@ -21,13 +21,4 @@ class BaseCampaigns extends Request
         $this->method = "base.Campaigns";
     }
 
-
-    /**
-     * @param null|string $shop
-     */
-    public function setShop(?string $shop): void
-    {
-        $this->setShop($shop);
-    }
-
 }
