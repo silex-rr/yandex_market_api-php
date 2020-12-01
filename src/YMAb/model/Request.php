@@ -33,7 +33,7 @@ abstract class Request
     protected $requestId;
 
     /**
-     * @var stdClass JSON
+     * @var mixed JSON
      */
     protected $response;
 
@@ -101,17 +101,17 @@ abstract class Request
     }
 
     /**
-     * @return ?stdClass
+     * @return mixed
      */
-    public function getResponse(): ?stdClass
+    public function getResponse()
     {
         return $this->response;
     }
 
     /**
-     * @param stdClass $response
+     * @param mixed $response
      */
-    public function setResponse(\stdClass $response): void
+    public function setResponse($response): void
     {
         $this->response = $response;
     }
