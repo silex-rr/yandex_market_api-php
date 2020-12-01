@@ -71,7 +71,10 @@ class RequestService
         $url = $this->context->getConfig()->getUrl()
             . $request->getUrl();
         $paramJson = json_encode($request->getParams());
-        $params = ["param" => urlencode($paramJson)];
+        $params = [
+            "method" => $request->getMethod(),
+            "param" => urlencode($paramJson)
+        ];
         if (!is_null($request->getShop())) {
             $params["shop"] = $request->getShop();
         }
