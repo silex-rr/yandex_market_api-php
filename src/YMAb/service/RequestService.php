@@ -71,11 +71,11 @@ class RequestService
         $url = $this->context->getConfig()->getUrl()
             . $request->getUrl();
         $paramJson = json_encode($request->getParams());
-        $params = ["param" => $paramJson];
+        $params = ["param" => urlencode($paramJson)];
         if (!is_null($request->getShop())) {
             $params["shop"] = $request->getShop();
         }
-        if (is_null($request->getPriority())) {
+        if (!is_null($request->getPriority())) {
             $params["priority"] = $request->getPriority();
         }
         switch ($request->getProtocol()->getValue()) {
