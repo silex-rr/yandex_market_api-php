@@ -10,12 +10,6 @@ use YMAb\model\Request;
 class BaseCampaigns extends Request
 {
     /**
-     * Shop ID in Balancer (like 5f40b11325508f46d92cdf1d)
-     * @var string
-     */
-    private $shop;
-
-    /**
      * BaseCampaigns constructor.
      */
     public function __construct()
@@ -27,22 +21,13 @@ class BaseCampaigns extends Request
         $this->method = "base.Campaigns";
     }
 
-    /**
-     * @return string
-     */
-    public function getShop(): string
-    {
-        return $this->shop;
-    }
 
     /**
-     * @param string $shop
+     * @param null|string $shop
      */
-    public function setShop(string $shop): void
+    public function setShop(?string $shop): void
     {
-        $this->shop = $shop;
-        $this->params["shop"] = $shop;
-        $this->updateParameter("shop", $shop);
+        $this->setShop($shop);
     }
 
 }

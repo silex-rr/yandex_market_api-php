@@ -53,6 +53,17 @@ abstract class Request
     protected $timeResponse;
 
     /**
+     * Shop ID in Balancer (like 5f40b11325508f46d92cdf1d)
+     * @var string|null
+     */
+    protected $shop;
+
+    /**
+     * @var int|null
+     */
+    protected $priority;
+
+    /**
      * Request constructor.
      */
     public function __construct()
@@ -178,6 +189,38 @@ abstract class Request
     public function setProtocol(Protocol $protocol): void
     {
         $this->protocol = $protocol;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShop(): ?string
+    {
+        return $this->shop;
+    }
+
+    /**
+     * @param string|null $shop
+     */
+    public function setShop(?string $shop): void
+    {
+        $this->shop = $shop;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    /**
+     * @param int|null $priority
+     */
+    public function setPriority(?int $priority): void
+    {
+        $this->priority = $priority;
     }
 
 

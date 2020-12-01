@@ -70,17 +70,23 @@ class RequestService
         $curl->setHeader("Authorization", "Bearer " . $this->context->getConfig()->getToken());
         $url = $this->context->getConfig()->getUrl()
             . $request->getUrl();
-        $params = json_encode($request->getParams());
-        $paramsJson = ["param" => $params];
+        $paramJson = json_encode($request->getParams());
+        $params = ["param" => $paramJson];
+        if (!is_null($request->getShop())) {
+            $params["shop"] = $request->getShop();
+        }
+        if (is_null($request->getPriority())) {
+            $params["priority"] = $request->getPriority();
+        }
         switch ($request->getProtocol()->getValue()) {
             case Protocol::PUT:
-                $curl->put($url, $paramsJson);
+                $curl->put($url, $params);
                 break;
             case Protocol::GET:
-                $curl->get($url, $paramsJson);
+                $curl->get($url, $params);
                 break;
             case Protocol::POST:
-                $curl->post($url, $paramsJson);
+                $curl->post($url, $params);
                 break;
         }
 
