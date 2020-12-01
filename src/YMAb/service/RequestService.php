@@ -67,6 +67,7 @@ class RequestService
     public function sendRequest(Request $request): void
     {
         $curl = new Curl();
+        $curl->setHeader("Authorization", "Bearer " . $this->context->getConfig()->getToken());
         $url = $this->context->getConfig()->getUrl()
             . $request->getUrl();
         $params = json_encode($request->getParams());
