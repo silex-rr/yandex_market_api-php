@@ -85,9 +85,9 @@ abstract class Request
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRequestId(): string
+    public function getRequestId(): ?string
     {
         return $this->requestId;
     }
